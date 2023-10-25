@@ -1,0 +1,20 @@
+Package: MetaNorm
+Type: Package
+Title: MetaNorm: Incorporating Meta-analytic Priors into Normalization of NanoString nCounter Data
+Version: 0.0.1
+Author: Jackson Barth [aut],
+  Yuqiu Yang [aut],
+  Guanghua Xiao [aut],
+  Xinlei Wang [aut]
+Maintainer: Jackson Barth <jackson_barth@baylor.edu>
+Description: Non-informative or diffuse prior distributions are widely employed in Bayesian data analysis to maintain objectivity. However, when meaningful prior information exists and can be identified, using an informative prior distribution to accurately reflect current knowledge may lead to superior outcomes and great efficiency. We propose MetaNorm, a Bayesian algorithm for normalizing NanoString nCounter gene expression data. MetaNorm is based on RCRnorm, a powerful method designed under an integrated series of hierarchical models that allow various sources of error to be explained by different types of probes in the nCounter system. However, a lack of accurate prior information, weak computational efficiency, and instability of estimates that sometimes occur weakens the approach despite its impressive performance. MetaNorm employs priors carefully constructed from a rigorous meta-analysis to leverage information from large public data. Combined with additional algorithmic enhancements, MetaNorm improves RCRnorm by yielding more stable estimation of normalized values, better convergence diagnostics and superior computational efficiency.
+License: MIT 
+Encoding: UTF-8
+LazyData: true
+Imports: Rcpp (>= 1.0.10), mvtnorm, coda, MASS, truncnorm
+LinkingTo: Rcpp, RcppArmadillo
+RoxygenNote: 7.2.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
