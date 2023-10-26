@@ -32,6 +32,16 @@ Dependencies
      - Version 
    * - R 
      - ``>=4.0.2``
+   * - Rcpp
+     - ``>=1.0.10``
+   * - mvtnorm
+     - ``>=1.1``
+   * - MASS
+     - ``>=17.3``
+   * - truncnorm
+     - ``>=1.0``
+   * - progress
+     - ``>=1.2.2``
 
 Installation
 ------------------

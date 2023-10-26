@@ -57,7 +57,7 @@ meta_analysis <- function(ds, coeffs2, M=5000, n_keep=-1)
   Yjk_list <<- list()
 
   for (k in 1:n_studies){
-    Yjk_list[[k]] <<-list()
+    Yjk_list[[k]] <<- list()
     for (j in 1:6){
       Yjk_list[[k]][[j]] <<- Y_ijk[Y_ijk$j==controls[j] & Y_ijk$k==k,]
     }

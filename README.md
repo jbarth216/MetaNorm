@@ -12,9 +12,12 @@ Besides the R helper as well as the vignette we provide along with the package, 
 ![Model Overview](/assets/model.png)
 
 ## Dependencies 
-- R
-- Rcpp
-- 
+- R>=4.0.2
+- Rcpp>=1.0.10
+- mvtnorm>=1.1
+- MASS>=17.3
+- truncnorm>=1.0
+- progress>=1.2.2
 
 ## Installation
 ```shell
@@ -22,23 +25,35 @@ intall_github(????)
 ```
 
 ## Quick Start Guide 
+Along with the package, we have provided two example datasets ``meta_analysis_data.RData`` and ``normalization_data.RData``. We will use them to quickly demonstrate how to get started with our package. 
 
-
-MetaNorm is a normalization technique for Nanostring nCounter datasets. The artical associated with this project is currently under review at Bioinformatics.
-
-There are two main projects associated with this analysis. They are described in detail below.
-
-#1) Meta-analysis of Nanostring nCounter datasets
-
-"Meta_Analysis_Clean_20230825.R" contains the code to perform the meta-analysis. Positive probe data for the 13 collected datasets can be found in 
-"All_clean2.csv", while estimated coefficients based on this data can be found in "coeffs2.csv". Finally, "armadillo.cpp" contains C++ code used in 
-the meta-analysis (via rcpp package) to improve performance speed.
-
+### Meta-analysis of Nanostring nCounter datasets
+In the ``meta_analysis_data.RData``, we provide positive probe data for the 13 collected datasets. To curate the data and generate empirical estimated coefficients based on this data simply run the following. 
+```shell 
+library(MetaNorm)
+data("meta_analysis_data")
+ds = curate_data(dataset=ds)
+reults = find_regression_coefs(df=ds)
+```
 The purpose of the meta-analysis is to provide posterior estimates to plug in to prior distributions of model parameters in the MetaNorm procedure.
+
 The analysis is based on a complex Bayesian hierarchical model, similar to the ones used in MetaNorm and RCRnorm. The model is designed specifically
 for these datasets, and while not mean to be reproduced with other data, can certainly be a guide for similar analyses.
 
-#2) MetaNorm
+To run the Gibbs sampler, use the following code:
+```shell
+draw = meta_analysis(results$df, results$coeffs2, M=12000, n_keep=-1)
+```
+The result is a dataframe containing posterior sample draws of major variables. `M` specifies how many samples to draw while `n_keep` tells the program how many samples to keep. A negative number means to save all the samples. 
+
+To run several MCMC chains, simply repeat the previous code several times. 
+```shell 
+draw1 = meta_analysis(results$df, results$coeffs2, M=12000, n_keep=-1)
+draw2 = meta_analysis(results$df, results$coeffs2, M=12000, n_keep=-1)
+```
+
+### MetaNorm
+
 
 "MetaNorm_Clean_20230825.R" is the R code containing the normalization function. Nested in this is the file "Loop_functions.R", which contains update
 functions for various model parameters. Please note that MetaNorm takes 5 inputs, listed in detail below:
