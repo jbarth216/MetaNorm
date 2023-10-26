@@ -16,18 +16,18 @@ release = '0.0.1'
 
 extensions = [
     'sphinx_rtd_theme',
-    'sphinx.ext.autodoc',
+    # 'sphinx.ext.autodoc',
     # View source code 
-    'sphinx.ext.viewcode',
+    # 'sphinx.ext.viewcode',
     # Check building time
-    'sphinx.ext.duration',
+    # 'sphinx.ext.duration',
     # Generate CLI documents 
-    'sphinxcontrib.autoprogram',
+    # 'sphinxcontrib.autoprogram',
     #'sphinx.ext.doctest',
     #'sphinx.ext.coverage',
-    'sphinx.ext.napoleon',
+    # 'sphinx.ext.napoleon',
     # Generate github history
-    'sphinx_git',
+    # 'sphinx_git',
 ]
 
 templates_path = ['_templates']
