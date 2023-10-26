@@ -5,23 +5,54 @@
 
 .. image:: ../../assets/logo.png
    :width: 600
-   
+
 MetaNorm: Incorporating Meta-analytic Priors into Normalization of NanoString nCounter Data
 ================================================================================================
 
 MetaNorm is a normalization procedure for Nanostring nCounter datasets. 
 
+Here is a quick overview of the structure of the model:
 
+.. image:: ./images/model.png
+   :width: 600
+   :align: center
 
+For a more detailed exploration of our model, please refer to `our paper <https://www.google.com>`_:
+
+*MetaNorm Paper citation here*
+
+Dependencies 
+---------------------
+.. list-table:: Dependencies
+   :widths: 50 50 
+   :align: center
+   :header-rows: 1
+
+   * - Package
+     - Version 
+   * - R 
+     - ``>=4.0.2``
+
+Installation
+------------------
+
+User Guide / Tutorial
+==========================
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
+   :caption: Meta Analysis 
 
+   meta 
+
+.. toctree:: 
+   :maxdepth: 1
+   :caption: Normalization
+
+   norm 
 
 
 Indices and tables
 =====================
-
 
 * :ref:`genindex`
 * :ref:`modindex`
