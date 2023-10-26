@@ -13,11 +13,11 @@ Encoding: UTF-8
 LazyData: true
 Depends: R (>= 4.0.2)
 Imports: Rcpp (>= 1.0.10), 
-          RcppArmadillo (>= 0.12.4),
-          mvtnorm (>= 1.1), 
-          MASS (>= 7.3), 
-          truncnorm (>= 1.0), 
-          progress (>= 1.2.2)
+         RcppArmadillo (>= 0.12.4),
+         mvtnorm (>= 1.1), 
+         MASS (>= 7.3), 
+         truncnorm (>= 1.0), 
+         progress (>= 1.2.2)
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 7.2.1
 Suggests: 

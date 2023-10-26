@@ -1,11 +1,7 @@
-library(MASS)
-library(truncnorm)
-
-
 #' Update parameter a_{ik} and b_{ik}
 #'
 #' This function performs one step of the Gibbs sampling
-#' of the parameter \theta_{ik} = (a_{ik}, b_{ik})
+#' of the parameter theta_{ik} = (a_{ik}, b_{ik})
 #' @param i The patient index
 #' @param k The study index
 #' @param indx The prob index
@@ -13,7 +9,7 @@ library(truncnorm)
 #' @param Sig The current posterior sample of the covariance
 #' @param sigjk The current posterior sample of the variances of the residuals
 #' @param sjk The current posterior sample of s_{jk}
-#' @return A sample of the \theta parameter
+#' @return A sample of the  theta parameter
 #' @export
 update_ab<-Vectorize(function(i,k,indx,m,Sig,sigjk,sjk){
   m <- m[,k]
@@ -65,7 +61,7 @@ update_m <- Vectorize(function(k,ab,sig_alpha,sig_beta,Sig,mu){
   Sig_inv <- solve(Sig[[k]])
   Var <- solve(Sig_m_inv+nk[k]*Sig_inv)
   Mean <- Var%*%(Sig_m_inv%*%mu+apply(Sig_inv%*%theta,1,sum))
-  mvrnorm(1,Mean,Var)
+  MASS::mvrnorm(1,Mean,Var)
 },vectorize.args="k")
 
 
@@ -86,7 +82,7 @@ update_mu <- function(L,U,alpha,sig_alpha,K=13){
   if (L >= U){stop("Lower bound cannot be larger than Upper bound")}
   Mean <- (1/K)*sum(alpha)
   Sd <- ((1/K)*sig_alpha)^.5
-  rtruncnorm(1,L,U,Mean,Sd)
+  truncnorm::rtruncnorm(1,L,U,Mean,Sd)
 }
 
 
@@ -180,7 +176,7 @@ update_tj <- Vectorize(function(j,L,U,sjk,tau2j,tj,K=13){
   Var <- (1/K)*((1/tau2j[j])+(uj^2)/tau2j[5] + ((1+uj)^2)/tau2j[6])^(-1)
   Mean <-  Var*sum(sjk[j,]/tau2j[j]+(uj/tau2j[5])*(sjk[5,]-mm) -
                      ((1+uj)/tau2j[6])*(sjk[6,]+Tj+mm))
-  rtruncnorm(1,L,U,Mean,sqrt(Var))
+  truncnorm::rtruncnorm(1,L,U,Mean,sqrt(Var))
 },vectorize.args="j")
 
 

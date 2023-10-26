@@ -77,7 +77,7 @@ update_norm_cc <- function(Y_neg,a,b,d_neg,sig2_n,L=-10,U=10,N,n_samples){
   sigma2 <- (N*sum(b^2)/sig2_n)^(-1)
   N1 <- sum(matrix(b,1,n_samples)%*%t(Y_neg - matrix(a,N,n_samples,byrow=T) - matrix(d_neg,N,n_samples)))
   mu <- sigma2*N1/sig2_n
-  rtruncnorm(1,L,U,mu,sqrt(sigma2))
+  truncnorm::rtruncnorm(1,L,U,mu,sqrt(sigma2))
 }
 
 
@@ -121,7 +121,7 @@ update_norm_dpos3 <- function(Y,X_pos,a,b,sig2_d,sig2_e,P,n_samples,Sig_uns,D5,D
   Sig <- scaler*Sig_uns
   Phi <- apply((Ytil[1:4,] - D6%*%Ytil[5,] + D5%*%Ytil[6,]),1,sum)/sig2_e
   mu <- Sig%*%Phi
-  d<-rmvnorm(1,mu,Sig)
+  d<-mvtnorm::rmvnorm(1,mu,Sig)
   d[5]<- -t(D6)%*%t(d)
   d[6]<- -sum(d)
   d
@@ -148,7 +148,7 @@ update_norm_dhkreg <- function(Y,a,b,phi,kappa,sig2_e,sig2_d,n_genes,n_samples){
 update_norm_mu <- function(z,sig2_z,prior_mean,prior_var,L=-10,U=10,n_samples){
   sigma2 <- 1/(n_samples/sig2_z + 1/prior_var)
   mu <- sigma2*(sum(z)/sig2_z + prior_mean/prior_var)
-  rtruncnorm(1,L,U,mu,sqrt(sigma2))
+  truncnorm::rtruncnorm(1,L,U,mu,sqrt(sigma2))
 }
 
 

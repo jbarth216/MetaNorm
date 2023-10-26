@@ -85,11 +85,21 @@ draws2 = meta_analysis(ds=results$df,
 ### NOTE
 Currently, due to the way some Gibbs sampling functions are implemented, running the *meta_analysis* function will yield lots of intermediate variables in the Global environment. This will be fixed in the future. One direction would be incorporating SQLite to store intermediate variables. 
 
-For the purpose of demonstration, we also included the four MCMC chains in parallel of 12,000 samples. 
+For the purpose of demonstration, we also included the four MCMC chains in parallel of 12,000 samples. Here we show the posterior draws of one of the parameters. 
+```{r draws, fig.align='center', out.width="70%"}
+data("meta_mcmc_draws1")
+data("meta_mcmc_draws2")
+data("meta_mcmc_draws3")
+# data("meta_mcmc_draws4")
+plot(draw1$mu_alpha, type="l")
+lines(draw2$mu_alpha, col=2)
+lines(draw3$mu_alpha, col=3)
+# lines(draw4$mu_alpha, col=4)
+```
 
 # Normalization 
 Now we move on to the MetaNorm algorithm. Likewise, we have provided along with our package a curated dataset that can be directly loaded and used as input to the MetaNorm function. 
-```{r input}
+```{r input, eval=FALSE}
 data("normalization_data")
 ```
 To run the MetaNorm algorith, simply run the following: 
@@ -100,6 +110,11 @@ draws = MetaNorm(dat=input,
 
 ```
 
+For the purpose of demonstration, we also included one MCMC chain on one of the parameters
 
+```{r draw, fig.align='center', out.width="70%"}
+data("norm_mcmc_draws_kappa_hk")
+plot(kappa_hk[,1,1], type="l")
+```
 
 

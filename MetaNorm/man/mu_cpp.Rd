@@ -13,7 +13,7 @@ mu_cpp(Sig1, Sig, X, sigjk, m, Y, s)
 
 \item{X}{X A matrix of X_{ik}}
 
-\item{sigjk}{A diagonal matrix of the posterior samples of \sigma^2_{jk}}
+\item{sigjk}{A diagonal matrix of the posterior samples of sigma^2_{jk}}
 
 \item{m}{The current posterior sample of the mean vector}
 
@@ -26,5 +26,5 @@ An updated mu vector
 }
 \description{
 This function computes the posterior mean vector
-of the parameter \theta_{ik} = (a_{ik} and b_{ik})
+of the parameter theta_{ik} = (a_{ik} and b_{ik})
 }

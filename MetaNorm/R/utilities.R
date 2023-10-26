@@ -1,5 +1,3 @@
-library(mvtnorm)
-
 #' Find the simple linear regression coefficients
 #'
 #' Given the response y and the feature x, this function

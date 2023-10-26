@@ -10,19 +10,10 @@ An object of class \code{function} of length 1.
 \usage{
 MetaNorm
 
-MetaNorm(
-  dat,
-  pos_conc = log10(c(128, 32, 8, 2, 0.5, 0.125)),
-  M = 15000,
-  n_keep = -1,
-  mm = 3,
-  seed = 0
-)
+MetaNorm(dat, M = 15000, n_keep = -1, mm = 3, seed = 0)
 }
 \arguments{
 \item{dat}{A list of 4 dataframes}
-
-\item{pos_conc}{A vector of mRNA amount of positive probs}
 
 \item{M}{Number of MCMC draws}
 
@@ -31,6 +22,8 @@ MetaNorm(
 \item{mm}{The radius}
 
 \item{seed}{Random seed}
+
+\item{pos_conc}{A vector of mRNA amount of positive probs}
 }
 \value{
 A list containing posterior sample draws
@@ -50,7 +43,12 @@ normalization_data.RData contains
 mRNA measurements on 4 kinds of probes from one study. The data
 was used by RCRnorm.
 
-meta_mcmc_draws.RData contains the posterior sample draws from 4
-MCMC chains each with 12,000 samples.
+meta_mcmc_draws1.RData, meta_mcmc_draw2.RData,
+meta_mcmc_draws3.RData, meta_mcmc_draw4.RData
+contain the posterior sample draws from 4
+MCMC chains each with 12,000 samples from running meta_analysis.
+
+norm_mcmc_draws_kappa_hk.RData contains the posterior sample draws from one
+MCMC chains each with 2,000 samples from running MetaNorm
 }
 \keyword{datasets}

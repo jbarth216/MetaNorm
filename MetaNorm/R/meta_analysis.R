@@ -1,5 +1,3 @@
-library(progress)
-
 #' Perform meta analysis
 #'
 #' This function performs meta analysis via Gibbs sampling
@@ -108,7 +106,7 @@ meta_analysis <- function(ds, coeffs2, M=5000, n_keep=-1)
 
   Draws <- data.frame(Index=seq(n_keep),mu_alpha=0,mu_beta=0,
                      sig_alpha=0,sig_beta=0,t1=0,t2=0,t3=0,t4=0,t5=0,t6=0)
-  pb = progress_bar$new(total = M)
+  pb = progress::progress_bar$new(total = M)
   for (ii in 1:M){
     pb$tick()
     ab[,3:4]<-t(update_ab(allik_i,allik_k,Yik_indx,m,Sig,sigjk,sjk)) ##.234 secs

@@ -1,4 +1,3 @@
-library(progress)
 #' Estimate mRNA amount for every gene/sample combination
 #'
 #' This function is similar to RCRnorm with the prior changed
@@ -125,7 +124,7 @@ MetaNorm <- function(dat,
   Results$sig2_n <- numeric(n_keep)
 
   ##Begin Loop ####
-  pb = progress_bar$new(total = M)
+  pb = progress::progress_bar$new(total = M)
   for (i in 1:M){
     pb$tick()
     Results$a[max(c(1, i-M+n_keep)),] <- a <- update_norm_a(Y_pos,X_pos,Y_neg,Y_hk,Y_reg,

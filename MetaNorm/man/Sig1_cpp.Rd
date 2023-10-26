@@ -11,12 +11,12 @@ Sig1_cpp(Sig, X, sigjk)
 
 \item{X}{A matrix of X_{ik}}
 
-\item{sigjk}{A diagonal matrix of the posterior samples of \sigma^2_{jk}}
+\item{sigjk}{A diagonal matrix of the posterior samples of sigma^2_{jk}}
 }
 \value{
 An updated Sigma matrix
 }
 \description{
 This function computes the posterior covariance matrix
-of the parameter \theta_{ik} = (a_{ik} and b_{ik})
+of the parameter theta_{ik} = (a_{ik} and b_{ik})
 }

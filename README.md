@@ -12,11 +12,17 @@ Besides the R helper as well as the vignette we provide along with the package, 
 ![Model Overview](/assets/model.png)
 
 ## Dependencies 
+
+- R>=4.0.2
+
+## Installation
+```shell
+library(devtools)
+install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="dev")
+```
 Other than making sure your R version is correct, there is no need for 
 you to manually install other packages as they will be automatically 
 installed when installing our package.  
-
-- R>=4.0.2
 <details>
 <summary>Other dependencies</summary>
 
@@ -27,14 +33,6 @@ installed when installing our package.
 5. truncnorm>=1.0
 6. progress>=1.2.2
 </details>
-
-
-## Installation
-```shell
-library(devtools)
-install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="dev")
-```
-
 
 
 ## Quick Start Guide 

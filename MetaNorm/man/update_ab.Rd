@@ -22,9 +22,9 @@ update_ab(i, k, indx, m, Sig, sigjk, sjk)
 \item{sjk}{The current posterior sample of s_{jk}}
 }
 \value{
-A sample of the \theta parameter
+A sample of the  theta parameter
 }
 \description{
 This function performs one step of the Gibbs sampling
-of the parameter \theta_{ik} = (a_{ik}, b_{ik})
+of the parameter theta_{ik} = (a_{ik}, b_{ik})
 }

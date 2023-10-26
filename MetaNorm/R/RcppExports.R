@@ -27,10 +27,10 @@ inverse <- function(sig) {
 #' A helper function of the Gibbs sampler to the Sigma parameters of a_{ik} and b_{ik}
 #'
 #' This function computes the posterior covariance matrix
-#' of the parameter \theta_{ik} = (a_{ik} and b_{ik})
+#' of the parameter theta_{ik} = (a_{ik} and b_{ik})
 #' @param Sig The current posterior sample of the covariance matrix
 #' @param X A matrix of X_{ik}
-#' @param sigjk A diagonal matrix of the posterior samples of \sigma^2_{jk}
+#' @param sigjk A diagonal matrix of the posterior samples of sigma^2_{jk}
 #' @return An updated Sigma matrix
 #' @export
 Sig1_cpp <- function(Sig, X, sigjk) {
@@ -40,11 +40,11 @@ Sig1_cpp <- function(Sig, X, sigjk) {
 #' A helper function of the Gibbs sampler to mu the parameters a_{ik} and b_{ik}
 #'
 #' This function computes the posterior mean vector
-#' of the parameter \theta_{ik} = (a_{ik} and b_{ik})
+#' of the parameter theta_{ik} = (a_{ik} and b_{ik})
 #' @param Sig1 The updated posterior covariance matrix
 #' @param Sig The current posterior sample of the covariance matrix
 #' @param X X A matrix of X_{ik}
-#' @param sigjk A diagonal matrix of the posterior samples of \sigma^2_{jk}
+#' @param sigjk A diagonal matrix of the posterior samples of sigma^2_{jk}
 #' @param m The current posterior sample of the mean vector
 #' @param Y A vector of Y_{ik}
 #' @param s A vector of s_k
