@@ -1,5 +1,4 @@
 library(mvtnorm)
-library(coda)
 
 #' Find the simple linear regression coefficients
 #'
