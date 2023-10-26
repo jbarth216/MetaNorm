@@ -18,7 +18,7 @@ Besides the R helper as well as the vignette we provide along with the package, 
 ## Installation
 ```shell
 library(devtools)
-install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="dev")
+install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="main")
 ```
 Other than making sure your R version is correct, there is no need for 
 you to manually install other packages as they will be automatically 

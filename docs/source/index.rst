@@ -57,7 +57,7 @@ Installation
 .. code:: bash 
 
    library(devtools)
-   install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="dev")
+   install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="main")
 
 User Guide / Tutorial
 ==========================
