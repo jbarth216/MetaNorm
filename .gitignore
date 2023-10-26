@@ -64,3 +64,6 @@ src/*.dll
 
 ## Docs 
 docs/build
+
+## VScode 
+.vscode 

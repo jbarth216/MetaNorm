@@ -3,8 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to MetaNorm's documentation!
-====================================
+.. image:: ../../assets/logo.png
+   :width: 600
+   
+MetaNorm: Incorporating Meta-analytic Priors into Normalization of NanoString nCounter Data
+================================================================================================
+
+MetaNorm is a normalization procedure for Nanostring nCounter datasets. 
+
+
 
 .. toctree::
    :maxdepth: 2
@@ -13,7 +20,8 @@ Welcome to MetaNorm's documentation!
 
 
 Indices and tables
-==================
+=====================
+
 
 * :ref:`genindex`
 * :ref:`modindex`
