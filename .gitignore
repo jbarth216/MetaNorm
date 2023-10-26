@@ -58,9 +58,9 @@ rsconnect/
 
 
 ### Rcpp ##
-src/*.o
-src/*.so
-src/*.dll
+*.o
+*.so
+*.dll
 
 ## Docs 
 docs/build
