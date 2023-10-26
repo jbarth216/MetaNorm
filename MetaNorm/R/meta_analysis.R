@@ -1,10 +1,12 @@
+library(progress)
+
 #' Perform meta analysis
 #'
 #' This function performs meta analysis via Gibbs sampling
 #' @param ds A curated data.frame
 #' @param coeffs2 A data.frame of estimated coefficients
 #' @param M Number of draws
-#' @param n_keep Number of samples to keep
+#' @param n_keep Number of samples to keep. If <= 0, all samples will be kept.
 #' @return A data.frame with posterior draws
 #' @export
 meta_analysis <- function(ds, coeffs2, M=5000, n_keep=-1)
@@ -14,8 +16,13 @@ meta_analysis <- function(ds, coeffs2, M=5000, n_keep=-1)
     n_keep = M
   }
   ##Some items that won't change##
-  I2 <- matrix(c(1,0,0,1),2,2)
-  X <- matrix(c(rep(1,6), log(c(128,32,8,2,.5,.125),10)),6,2)
+  #####################################
+  # AS THE GIBBS NEED THOSE VARIABLE
+  # I AM USING <<-
+  # THIS IS SUPER MESSY, SHOULD BE CHANGED
+  #####################################
+  I2 <<- matrix(c(1,0,0,1),2,2)
+  X <<- matrix(c(rep(1,6), log(c(128,32,8,2,.5,.125),10)),6,2)
   ##
   Y_ijk = ds[,c("SampleID_seq",
                 "control",
@@ -25,34 +32,34 @@ meta_analysis <- function(ds, coeffs2, M=5000, n_keep=-1)
   colnames(Y_ijk) <- c("i","j","k","UID","Y")
   controls <- c("A","B","C","D","E","F")
   n_studies = max(Y_ijk$k)
-  nk=numeric(n_studies)
+  nk<<-numeric(n_studies)
   for(k in 1 : n_studies)
   {
     n <- nrow(coeffs2[coeffs2$dataset_seq==k,])
-    nk[k]=n
+    nk[k]<<-n
   }
   n_samples = max(Y_ijk$UID)
   ##Create i/j/k vectors:
-  allik_i <- coeffs2$SampleID_seq
-  allik_k <- coeffs2$dataset_seq
-  alljk_j <- rep(seq(6),n_studies)
-  alljk_k <- rep(seq(n_studies),rep(6,n_studies))
-  klist <- as.list(seq(n_studies))
-  Yik_indx <- 1:length(allik_i)
-  Yjk_indx <- 1:length(alljk_j)
+  allik_i <<- coeffs2$SampleID_seq
+  allik_k <<- coeffs2$dataset_seq
+  alljk_j <<- rep(seq(6),n_studies)
+  alljk_k <<- rep(seq(n_studies),rep(6,n_studies))
+  klist <<- as.list(seq(n_studies))
+  Yik_indx <<- 1:length(allik_i)
+  Yjk_indx <<- 1:length(alljk_j)
 
-  Yik_list <- list()
+  Yik_list <<- list()
 
   for (indx in 1:n_samples){
-    Yik_list[[indx]] <-Y_ijk[Y_ijk$i==allik_i[indx] & Y_ijk$k==allik_k[indx],]
+    Yik_list[[indx]] <<- Y_ijk[Y_ijk$i==allik_i[indx] & Y_ijk$k==allik_k[indx],]
   }
 
-  Yjk_list <- list()
+  Yjk_list <<- list()
 
   for (k in 1:n_studies){
-    Yjk_list[[k]] <-list()
+    Yjk_list[[k]] <<-list()
     for (j in 1:6){
-      Yjk_list[[k]][[j]] <- Y_ijk[Y_ijk$j==controls[j] & Y_ijk$k==k,]
+      Yjk_list[[k]][[j]] <<- Y_ijk[Y_ijk$j==controls[j] & Y_ijk$k==k,]
     }
   }
   ###Randomize Initial Starting values
@@ -101,7 +108,9 @@ meta_analysis <- function(ds, coeffs2, M=5000, n_keep=-1)
 
   Draws <- data.frame(Index=seq(n_keep),mu_alpha=0,mu_beta=0,
                      sig_alpha=0,sig_beta=0,t1=0,t2=0,t3=0,t4=0,t5=0,t6=0)
+  pb = progress_bar$new(total = M)
   for (ii in 1:M){
+    pb$tick()
     ab[,3:4]<-t(update_ab(allik_i,allik_k,Yik_indx,m,Sig,sigjk,sjk)) ##.234 secs
     Sig <- lapply(klist,update_Sig,ab1=ab,m=m) ##.016 secs
     K$m[max(c(1, ii-M+n_keep)),,]<-m[,] <- update_m(1:n_studies,ab,sig_alpha,sig_beta,Sig,mu) ##.009 secs
@@ -128,6 +137,7 @@ meta_analysis <- function(ds, coeffs2, M=5000, n_keep=-1)
     K$t[max(c(1, ii-M+n_keep)), ] = tj
     tau2j[] <- update_tau2j(1:6,.01,sjk,tj,n_studies) ### .0002 secs
     sigjk[,] <- update_sigjk(alljk_j,alljk_k,.01,ab,sjk) ##.017 secs
+    Sys.sleep(1/100)
   }
   Draws$mu_alpha = K$mu_alpha
   Draws$mu_beta = K$mu_beta

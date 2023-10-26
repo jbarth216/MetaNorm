@@ -13,7 +13,7 @@ meta_analysis(ds, coeffs2, M = 5000, n_keep = -1)
 
 \item{M}{Number of draws}
 
-\item{n_keep}{Number of samples to keep}
+\item{n_keep}{Number of samples to keep. If <= 0, all samples will be kept.}
 }
 \value{
 A data.frame with posterior draws

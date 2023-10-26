@@ -16,6 +16,17 @@ sum_except <- Vectorize(function(i,vec){sum(vec[-i])},vectorize.args="i")
 sum_except2 <- function(i,vec){sum(vec[-i])}
 
 
+#' X
+#'
+#' @return A ratio
+#' @export
+X_thing <- function(i,j,X){
+  X5 <- X[5]
+  X6 <- X[6]
+  ((X[i]-X6)*(X[j]-X6) + (X[i]-X5)*(X[j]-X5))/((X5-X6)^2)
+}
+
+
 #' Update a
 #'
 #' @return A posterior sample of a

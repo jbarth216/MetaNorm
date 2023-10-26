@@ -1,5 +1,5 @@
 ---
-title: "Tutorial"
+title: "MetaNorm"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Tutorial}
@@ -16,4 +16,92 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(MetaNorm)
+# For diagnosis
+library(coda)
+set.seed(42)
+```
+# Introduction
+Non-informative or diffuse prior distributions are widely employed in Bayesian data analysis to maintain objectivity. However, when meaningful prior information exists and can be identified, using an informative prior distribution to accurately reflect current knowledge may lead to superior outcomes and great efficiency. We propose MetaNorm, a Bayesian algorithm for normalizing NanoString nCounter gene expression data. MetaNorm is based on RCRnorm, a powerful method designed under an integrated series of hierarchical models that allow various sources of error to be explained by different types of probes in the nCounter system. However, a lack of accurate prior information, weak computational efficiency, and instability of estimates that sometimes occur weakens the approach despite its impressive performance. MetaNorm employs priors carefully constructed from a rigorous meta-analysis to leverage information from large public data. Combined with additional algorithmic enhancements, MetaNorm improves RCRnorm by yielding more stable estimation of normalized values, better convergence diagnostics and superior computational efficiency.
+
+In this document, we will guide you step-by-step from preparing your data, curating data, performing meta analysis, to normalizing a study. 
+
+# Meta Analysis 
+In this section, we showcase how to use the `MetaNorm` package
+to perform meta analysis on NanoString nCounter gene expression data. We will use the example data provided under the `data/` folder for demonstration. 
+
+## Data Format 
+Before we jump into the nitty-gritty details on this package, we first need to make sure that the input data is of the correct format. 
+```{r format}
+df = read.csv("../data/meta_analysis_data.csv")
+head(df, n=12)
+```
+The minimal requirement is that the data contains 5 columns which must be named 
+
+1. DataSet: An unique ID given to each study
+2. RNA: The designated mRNA measurement of the positive probes. They must be 128, 32, 8, 2, 0.5, and 0.125. 
+3. SampleID: An unique ID given to each patient in each study 
+4. Count: The actual measurements 
+5. UID: An unique ID given to each **combination** of patient and study
+
+## Data Curation
+The data curation involves two steps: creating indices that are consecutive and performing linear regression to get empirical estimates of intercepts, slopes, and residuals. 
+```{r curation}
+df = curate_data(dataset=df)
+# Or 
+# df = curate_data(dataset='../data/meta_analysis_data.csv')
+head(df, n=12)
+```
+The *curate_data* function first checks if the columns name as well as the *RNA* column conforms to our requirement. The argument `dataset` can be a dataframe or the path to the .csv file. Then, it creates consecutive IDs and transforms RNA and Count. 
+
+We then perform linear regression for each patient in each study and record the regression coefficients and residuals. 
+```{r regression}
+results = find_regression_coefs(df=df)
+head(results$df)
+head(results$coeffs2)
+```
+Compared with the previous output, we can see that a *residual* column has been added to the *df* variable. Also, we have created a new dataframe containing all the regression coefficients. 
+
+That's all the preparation you need!
+
+## Meta Analysis 
+The fun part starts from here where we finally have everything we need to execute our wonderful Gibbs sampler. And all you need is just one line of code. This might take a while....
+```{r meta, eval=FALSE}
+Draws = meta_analysis(ds=results$df,
+                      coeffs2=results$coeffs2,
+                      M=12000,
+                      n_keep=5000)
+
+```
+In our paper, we ran 4 MCMC chains in parallel of 12,000 samples. 
+
+## Basic Diagnosis 
+
+```{r diag}
+
+
+```
+
+
+# Normalization 
+Now we move on to the MetaNorm algorithm.  
+
+
+```{r input}
+pos_dat = read.csv("../data/normalization_pos_data.csv")
+neg_dat = read.csv("../data/normalization_neg_data.csv")
+hk_dat = read.csv("../data/normalization_hk_data.csv")
+reg_dat = read.csv("../data/normalization_reg_data.csv")
+input = list(pos_dat=pos_dat,
+             neg_dat=neg_dat,
+             hk_dat=hk_dat,
+             reg_dat=reg_dat)
+
+
+```
+
+```{r norm, eval=FALSE}
+draws = MetaNorm(dat=input,
+                 M=5000,
+                 n_keep=1000)
+
 ```

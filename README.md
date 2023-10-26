@@ -1,5 +1,28 @@
-# MetaNorm
-Code for running MetaNorm, a normalization procedure for Nanostring nCounter datasets
+# MetaNorm: Incorporating Meta-analytic Priors into Normalization of NanoString nCounter Data
+
+![Logo](/assets/logo.png)
+
+MetaNorm is a normalization procedure for Nanostring nCounter datasets. 
+
+Please refer to our paper for more details: [MetaNorm link here](www.google.com)
+
+Besides the R helper as well as the vignette we provide along with the package, we have also built a detailed [online documentation](https://pmtnet-omni-document.readthedocs.io/en/latest/) where we guide you step-by-step on how to conduct meta analysis as well as normalizing a NanoString nCounter dataset.
+
+## Model Overview 
+![Model Overview](/assets/model.png)
+
+## Dependencies 
+- R
+- Rcpp
+- 
+
+## Installation
+```shell
+intall_github(????)
+```
+
+## Quick Start Guide 
+
 
 MetaNorm is a normalization technique for Nanostring nCounter datasets. The artical associated with this project is currently under review at Bioinformatics.
 
@@ -62,3 +85,16 @@ across all non-burn-in draws.
 
 FUTURE UPDATES: The next iteration of this code will provide posterior estimates automatically, and will give users the options not to keep all draws to 
 preserve RAM and minimize the chances of R crashing.
+
+## Citation
+The artical associated with this project is currently under review at Bioinformatics.
+
+## Contact 
+Jackson Barth, PhD (jackson_barth@baylor.edu)
+
+Assistant Professor
+
+Department of Statistical Science
+
+Baylor University 
+

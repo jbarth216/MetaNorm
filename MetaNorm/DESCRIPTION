@@ -11,7 +11,7 @@ Description: Non-informative or diffuse prior distributions are widely employed 
 License: MIT 
 Encoding: UTF-8
 LazyData: true
-Imports: Rcpp (>= 1.0.10), mvtnorm, coda, MASS, truncnorm
+Imports: Rcpp (>= 1.0.10), mvtnorm, coda, MASS, truncnorm, progress
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 7.2.1
 Suggests: 

@@ -2,6 +2,7 @@
 
 export(MetaNorm)
 export(Sig1_cpp)
+export(X_thing)
 export(curate_data)
 export(find_regression_coefs)
 export(fitWithPosCtrl)

@@ -104,10 +104,8 @@ curate_data = function(dataset, ...)
   df$control = rep(controls, nn)
   # Finally, we add log10 transformed columns
   # to facilitate linear regression
-  df$RNA_log10 = log10(df$RNA+1)
+  df$RNA_log10 = log10(df$RNA)
   df$Count_log10 = log10(df$Count+1)
-  df$RNA_log10[!is.finite(df$RNA_log10)] = 0
-  df$Count_log10[!is.finite(df$Count_log10)] = 0
   return(df)
 }
 
