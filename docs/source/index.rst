@@ -13,7 +13,7 @@ MetaNorm is a normalization procedure for Nanostring nCounter datasets.
 
 Here is a quick overview of the structure of the model:
 
-.. image:: ./images/model.png
+.. image:: ../../assets/model.png
    :width: 600
    :align: center
 
