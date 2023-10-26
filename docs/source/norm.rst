@@ -11,6 +11,7 @@ data used by RCRnorm for demonstration `normalization_data.RData`.
 To load the data and carry out `MetaNorm`, simply run the following: 
 
 .. code:: bash 
+    
     data("normalization_data")
     draw = MetaNorm(dat=normalization_data, M=5000, n_keep=1000)
 

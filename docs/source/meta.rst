@@ -7,11 +7,12 @@ similar to the ones used in MetaNorm and RCRnorm. The model is designed
 specifically for these datasets, and while not mean to be reproduced with 
 other data, can certainly be a guide for similar analyses.
 
-In the ``meta_analysis_data.RData``, we provide positive probe
- data for the 13 collected datasets. To curate the data and generate
+In the `meta_analysis_data.RData`, we provide positive probe
+data for the 13 collected datasets. To curate the data and generate
 empirical estimated coefficients based on this data simply run the following. 
 
 .. code:: bash 
+
     library(MetaNorm)
     data("meta_analysis_data")
     ds = curate_data(dataset=ds)
@@ -33,6 +34,7 @@ slopes, and residuals.
 Once these are done, you are ready to perform meta analysis
 
 .. code:: bash 
+    
     Draws = meta_analysis(ds=results$df,
                       coeffs2=results$coeffs2,
                       M=12000,

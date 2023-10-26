@@ -12,19 +12,30 @@ Besides the R helper as well as the vignette we provide along with the package, 
 ![Model Overview](/assets/model.png)
 
 ## Dependencies 
+Other than making sure your R version is correct, there is no need for 
+you to manually install other packages as they will be automatically 
+installed when installing our package.  
+
 - R>=4.0.2
-- Rcpp>=1.0.10
-- RcppArmadillo>=0.12.4
-- mvtnorm>=1.1
-- MASS>=17.3
-- truncnorm>=1.0
-- progress>=1.2.2
+<details>
+<summary>Other dependencies</summary>
+
+1. Rcpp>=1.0.10
+2. RcppArmadillo>=0.12.4
+3. mvtnorm>=1.1
+4. MASS>=17.3
+5. truncnorm>=1.0
+6. progress>=1.2.2
+</details>
+
 
 ## Installation
 ```shell
 library(devtools)
 install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="dev")
 ```
+
+
 
 ## Quick Start Guide 
 Along with the package, we have provided two example datasets ``meta_analysis_data.RData`` and ``normalization_data.RData``. We will use them to quickly demonstrate how to get started with our package. 

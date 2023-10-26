@@ -21,6 +21,14 @@ For a more detailed exploration of our model, please refer to `our paper <https:
 
 Dependencies 
 ---------------------
+Here we list the dependencies of the package. 
+
+.. note:: 
+   Other than R, there is no need for you to install those 
+   packages manually as they will be installed while installing 
+   MetaNorm
+   
+
 .. list-table:: Dependencies
    :widths: 50 50 
    :align: center
@@ -47,6 +55,7 @@ Installation
 ------------------
 
 .. code:: bash 
+
    library(devtools)
    install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="dev")
 
