@@ -34,6 +34,8 @@ Dependencies
      - ``>=4.0.2``
    * - Rcpp
      - ``>=1.0.10``
+   * - RcppArmadillo
+     - ``>=0.12.4``
    * - mvtnorm
      - ``>=1.1``
    * - MASS

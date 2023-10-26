@@ -16,9 +16,6 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(MetaNorm)
-# For diagnosis
-library(coda)
-library(ggplot2)
 set.seed(42)
 ```
 # Introduction
@@ -83,55 +80,26 @@ draws2 = meta_analysis(ds=results$df,
                       coeffs2=results$coeffs2,
                       M=12000,
                       n_keep=5000)
-
+# ... and repeat
 ```
 ### NOTE
 Currently, due to the way some Gibbs sampling functions are implemented, running the *meta_analysis* function will yield lots of intermediate variables in the Global environment. This will be fixed in the future. One direction would be incorporating SQLite to store intermediate variables. 
 
 For the purpose of demonstration, we also included the four MCMC chains in parallel of 12,000 samples. 
-## Basic Diagnosis 
-We will look the posterior draws of the variable $\mu_\alpha$
-```{r diag, fig.align='center', out.width="70%"}
-data("meta_mcmc_draws")
-ggplot(data=meta_mcmc_draws, 
-       aes(x=Index, y=mu_alpha, color=factor(chain))) +
-  geom_line()
-```
-Now we perform Gelman-Rubin diagnostics after a burn-in of 5,000 samples. 
-```{r diag}
-draws1 = meta_mcmc_draws[which(meta_mcmc_draws$chain==1),"mu_alpha"][-c(1:5000)]
-draws2 = meta_mcmc_draws[which(meta_mcmc_draws$chain==2),"mu_alpha"][-c(1:5000)]
-draws3 = meta_mcmc_draws[which(meta_mcmc_draws$chain==3),"mu_alpha"][-c(1:5000)]
-draws4 = meta_mcmc_draws[which(meta_mcmc_draws$chain==4),"mu_alpha"][-c(1:5000)]
-drawlist = mcmc.list(list(mcmc(draws1),
-                          mcmc(draws2),
-                          mcmc(draws3),
-                          mcmc(draws4)))
-gelman.diag(drawlist)
-gelman.plot(drawlist)
-```
-
 
 # Normalization 
-Now we move on to the MetaNorm algorithm.  
-
-
+Now we move on to the MetaNorm algorithm. Likewise, we have provided along with our package a curated dataset that can be directly loaded and used as input to the MetaNorm function. 
 ```{r input}
-# pos_dat = read.csv("../data/normalization_pos_data.csv")
-# neg_dat = read.csv("../data/normalization_neg_data.csv")
-# hk_dat = read.csv("../data/normalization_hk_data.csv")
-# reg_dat = read.csv("../data/normalization_reg_data.csv")
-# dat = list(pos_dat=pos_dat,
-#              neg_dat=neg_dat,
-#              hk_dat=hk_dat,
-#              reg_dat=reg_dat)
-
-
+data("normalization_data")
 ```
-
+To run the MetaNorm algorith, simply run the following: 
 ```{r norm, eval=FALSE}
 draws = MetaNorm(dat=input,
                  M=5000,
                  n_keep=1000)
 
 ```
+
+
+
+

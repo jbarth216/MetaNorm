@@ -12,7 +12,6 @@ library(progress)
 #' @return A list containing posterior sample draws
 #' @export
 MetaNorm <- function(dat,
-                     pos_conc = log10(c(128, 32, 8, 2, 0.5, 0.125)),
                      M=15000,
                      n_keep=-1,
                      mm = 3,
@@ -23,6 +22,7 @@ MetaNorm <- function(dat,
   {
     n_keep = M
   }
+  pos_conc = log10(c(128, 32, 8, 2, 0.5, 0.125))
   pos_dat = log10(dat$pos_dat + 1)
   n_hk = dim(dat$hk_dat)[1]
   n_reg = dim(dat$reg_dat)[1]
