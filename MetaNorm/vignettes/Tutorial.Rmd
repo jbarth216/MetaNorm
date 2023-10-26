@@ -3,7 +3,7 @@ title: "MetaNorm"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Tutorial}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{rmarkdown::render}
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -90,11 +90,12 @@ For the purpose of demonstration, we also included the four MCMC chains in paral
 data("meta_mcmc_draws1")
 data("meta_mcmc_draws2")
 data("meta_mcmc_draws3")
-# data("meta_mcmc_draws4")
-plot(draw1$mu_alpha, type="l")
+data("meta_mcmc_draws4")
+plot(draw1$mu_alpha, type="l", main="MCMC Draws",
+     ylab = "mu_alpha", xlab=NA)
 lines(draw2$mu_alpha, col=2)
 lines(draw3$mu_alpha, col=3)
-# lines(draw4$mu_alpha, col=4)
+lines(draw4$mu_alpha, col=4)
 ```
 
 # Normalization 
@@ -114,7 +115,8 @@ For the purpose of demonstration, we also included one MCMC chain on one of the 
 
 ```{r draw, fig.align='center', out.width="70%"}
 data("norm_mcmc_draws_kappa_hk")
-plot(kappa_hk[,1,1], type="l")
+plot(kappa_hk[,1,1], type="l", main="MCMC Draws",
+     ylab = "kappa_hk", xlab=NA)
 ```
 
 
