@@ -19,8 +19,6 @@ Here is a quick overview of the structure of the model:
 
 For a more detailed exploration of our model, please refer to `our paper <https://www.google.com>`_:
 
-*MetaNorm Paper citation here*
-
 Dependencies 
 ---------------------
 .. list-table:: Dependencies
@@ -48,8 +46,15 @@ Dependencies
 Installation
 ------------------
 
+.. code:: bash 
+   library(devtools)
+   install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="dev")
+
 User Guide / Tutorial
 ==========================
+This package contains two main projects: mete analysis and MetaNorm. 
+They are described in detail below.
+
 .. toctree::
    :maxdepth: 1
    :caption: Meta Analysis 

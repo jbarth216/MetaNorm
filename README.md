@@ -22,7 +22,8 @@ Besides the R helper as well as the vignette we provide along with the package, 
 
 ## Installation
 ```shell
-intall_github(????)
+library(devtools)
+install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="dev")
 ```
 
 ## Quick Start Guide 
@@ -52,13 +53,16 @@ To run several MCMC chains, simply repeat the previous code several times.
 draw1 = meta_analysis(results$df, results$coeffs2, M=12000, n_keep=-1)
 draw2 = meta_analysis(results$df, results$coeffs2, M=12000, n_keep=-1)
 ```
+Once you plot the posterior draws, you will see something like this:
+![MCMC](/docs/source/images/meta_mcmc.png)
+
 
 ### MetaNorm
 To carry out a normalization procedure for a NanoString nCounter dataset, you will need the `MetaNorm` function. We have also included a sample data used by RCRnorm for demonstration `normalization_data.RData`. 
 
 *Please make sure that your datasets conform to our format*. Once you load the dataset
 ```shell 
-data("normalization_data.RData")
+data("normalization_data")
 ```
 you will see the data is a list of 4 dataframes containing:
 - '$pos_dat', a dataframe of positive probe read counts. Must have 6 rows and n columns (where n is the number of samples)
