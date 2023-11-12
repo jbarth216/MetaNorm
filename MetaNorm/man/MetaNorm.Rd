@@ -10,20 +10,30 @@ An object of class \code{function} of length 1.
 \usage{
 MetaNorm
 
-MetaNorm(dat, M = 15000, n_keep = -1, mm = 3, seed = 0)
+MetaNorm(
+  dat,
+  M = 15000,
+  all_draws = T,
+  burn_in = 5000,
+  thin = 1,
+  mm = 3,
+  seed = 0
+)
 }
 \arguments{
 \item{dat}{A list of 4 dataframes}
 
 \item{M}{Number of MCMC draws}
 
-\item{n_keep}{Number of posterior draws to keep}
+\item{all_draws}{Whether or not to return all MCMC draws. If TRUE, all draws from all parameters will be returned. If FALSE, only posterior means for kappa_reg and kappa_hk will be returned.}
+
+\item{burn_in}{Number of burn in MCMC draws. Only used when all_draws=FALSE.}
+
+\item{thin}{Number of thinning in MCMC draws. Only used when all_draws=FALSE.}
 
 \item{mm}{The radius}
 
 \item{seed}{Random seed}
-
-\item{pos_conc}{A vector of mRNA amount of positive probs}
 }
 \value{
 A list containing posterior sample draws
