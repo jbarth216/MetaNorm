@@ -53,8 +53,8 @@ and provide some basic information on how many sample are for burn in and how to
 
     output = MetaNorm(dat=input, M=5000, all_draws=FALSE, burn_in=1000, thin=2)
 
-By setting `burn_in=1000`, we are telling the algorithm to discard the first 1000 samples when computing the summary statistics.
- `thin=2` tells the algorithm to only collect every other sample to reduce auto-correlation. 
+By setting `burn_in=1000`, we are telling the algorithm to discard the first 1000 samples when computing the summary statistics. `thin=2` 
+tells the algorithm to only collect every other sample to reduce auto-correlation. 
 
 If you are curious about how we summarized the MCMC draws for `kappa_hk` and `kappa_reg` or you simply want to try it yourself, 
 this is how we arrived at the summary statistics you see. 
