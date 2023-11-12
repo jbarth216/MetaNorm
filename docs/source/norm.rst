@@ -84,6 +84,7 @@ To use this function, run the following code
  
  .. code:: bash 
 
+    data("normalization_data")
     output = MetaNorm_LowMemory(dat=dat,  M=5000, burn_in = 1000, thin=2)
 
 The output is a list containing two items: ``GlobalParameters_Draws`` (all draws 
