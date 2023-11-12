@@ -103,13 +103,13 @@ Now we move on to the MetaNorm algorithm. Likewise, we have provided along with 
 ```{r input, eval=FALSE}
 data("normalization_data")
 ```
-To run the MetaNorm algorith, simply run the following: 
+To run the MetaNorm algorithm, simply run the following: 
 ```{r norm, eval=FALSE}
 draws = MetaNorm(dat=input,
                  M=5000,
-                 n_keep=1000)
-
+                 all_draws=TRUE)
 ```
+The `all_draws=TRUE` tells the algorithm to keep all the MCMC draws for all parameters (which is A LOT). 
 
 For the purpose of demonstration, we also included one MCMC chain on one of the parameters
 
@@ -118,5 +118,26 @@ data("norm_mcmc_draws_kappa_hk")
 plot(kappa_hk[,1,1], type="l", main="MCMC Draws",
      ylab = "kappa_hk", xlab=NA)
 ```
+For most users, the only parameters of interest are the posterior means for `kappa_hk` and `kappa_reg`. Of course, you are welcome to compute the posterior summary statistics by yourself based on the MCMC draws. However, as the data structure is rather convoluted, we provide along with the `MetaNorm` function additional parameters to only return the parameters of interest. To enable this mode of inference, simply set `all_draws=FALSE` and provide some basic information on how many sample are for burn in and how to thin the MCMC draws.  
+```{r norm_only_stat, eval=FALSE}
+output = MetaNorm(dat=input,
+                  M=5000,
+                  all_draws=FALSE,
+                  burn_in=1000,
+                  thin=2)
+```
+By setting `burn_in=1000`, we are telling the algorithm to discard the first 1000 samples when computing the summary statistics. `thin=2` tells the algorithm to only collect every other sample to reduce auto-correlation. 
+
+Currently, due to the design of the algorithm, even if we are only returning the posterior means, we still store all the MCMC sample draws internally. This would consume lots of memory space which would be a serious issue if we are working with a large dataset. To alleviate the issue, we provide a function: `MetaNorm_LowMemory` that will only keep the most recent MCMC draws for all parameters except for global parameters. Along with the posterior samples for global parameters, we will also compute the summary statistics for `kappa_hk` and `kappa_reg`. To use this function, run the following code 
+```{r norm_low_memory, eval=FALSE}
+output = MetaNorm_LowMemory(dat=dat, 
+                            M=5000,
+                            burn_in = 1000,
+                            thin=2)
+```
+The output is a list containing two items: “GlobalParameters_Draws” (all draws for mu_a, mu_b, sig2_a, sig2_b) and “Posterior_estimates” (list of kappa_hk, kappa_reg posterior estimates).
+
+
+
 
 
