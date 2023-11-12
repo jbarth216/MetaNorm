@@ -60,6 +60,7 @@ If you are curious about how we summarized the MCMC draws for `kappa_hk` and `ka
 this is how we arrived at the summary statistics you see. 
 
 Starting from the posterior sample list: `draw`, we first discard burnt in samples and thin the rest of the draws. 
+
 .. code:: bash 
     
     draws <- seq(burn_in+1, M, by=thin)
@@ -80,6 +81,7 @@ returning the posterior means, we still store all the MCMC sample draws internal
  keep the most recent MCMC draws for all parameters except for global parameters. Along with the posterior 
  samples for global parameters, we will also compute the summary statistics for `kappa_hk` and `kappa_reg`. 
  To use this function, run the following code 
+ 
  .. code:: bash 
 
     output = MetaNorm_LowMemory(dat=dat,  M=5000, burn_in = 1000, thin=2)
