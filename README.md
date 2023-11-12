@@ -81,9 +81,9 @@ you will see the data is a list of 4 dataframes containing:
 
 *Any deviation from this format will result in an error, or faulty results.* 
 
-[!WARNING]  Running the following code will consume lots of memory. 
-    Proceed with caution. If you are working with a large dataset, 
-    please proceed directly to `Low Memory Mode`.
+> [!WARNING] 
+Running the following code will consume lots of memory. 
+Proceed with caution. If you are working with a large dataset, please proceed directly to `Low Memory Mode`.
 
 Once you have prepared your dataset, to perform `MetaNorm` simply run:
 ```shell
