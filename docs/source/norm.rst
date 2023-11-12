@@ -76,11 +76,11 @@ Low Memory Mode
 ----------------------
 Currently, due to the design of the algorithm, even if we are only 
 returning the posterior means, we still store all the MCMC sample draws internally.
- This would consume lots of memory space which would be a serious issue if we are working with 
- a large dataset. To alleviate the issue, we provide a function: `MetaNorm_LowMemory` that will only 
- keep the most recent MCMC draws for all parameters except for global parameters. Along with the posterior 
- samples for global parameters, we will also compute the summary statistics for `kappa_hk` and `kappa_reg`. 
- To use this function, run the following code 
+This would consume lots of memory space which would be a serious issue if we are working with 
+a large dataset. To alleviate the issue, we provide a function: `MetaNorm_LowMemory` that will only 
+keep the most recent MCMC draws for all parameters except for global parameters. Along with the posterior 
+samples for global parameters, we will also compute the summary statistics for `kappa_hk` and `kappa_reg`. 
+To use this function, run the following code 
  
  .. code:: bash 
 
