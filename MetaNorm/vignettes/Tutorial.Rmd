@@ -1,0 +1,143 @@
+---
+title: "MetaNorm"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tutorial}
+  %\VignetteEngine{rmarkdown::render}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MetaNorm)
+set.seed(42)
+```
+# Introduction
+Non-informative or diffuse prior distributions are widely employed in Bayesian data analysis to maintain objectivity. However, when meaningful prior information exists and can be identified, using an informative prior distribution to accurately reflect current knowledge may lead to superior outcomes and great efficiency. We propose MetaNorm, a Bayesian algorithm for normalizing NanoString nCounter gene expression data. MetaNorm is based on RCRnorm, a powerful method designed under an integrated series of hierarchical models that allow various sources of error to be explained by different types of probes in the nCounter system. However, a lack of accurate prior information, weak computational efficiency, and instability of estimates that sometimes occur weakens the approach despite its impressive performance. MetaNorm employs priors carefully constructed from a rigorous meta-analysis to leverage information from large public data. Combined with additional algorithmic enhancements, MetaNorm improves RCRnorm by yielding more stable estimation of normalized values, better convergence diagnostics and superior computational efficiency.
+
+In this document, we will guide you step-by-step from preparing your data, curating data, performing meta analysis, to normalizing a study. 
+
+# Meta Analysis 
+In this section, we showcase how to use the `MetaNorm` package
+to perform meta analysis on NanoString nCounter gene expression data. We will use the example data provided in the package for demonstration. 
+
+## Data Format 
+Before we jump into the nitty-gritty details on this package, we first need to make sure that the input data is of the correct format. 
+```{r format}
+data("meta_analysis_data")
+head(ds, n=12)
+```
+The minimal requirement is that the data contains 5 columns which must be named 
+
+1. DataSet: An unique ID given to each study
+2. RNA: The designated mRNA measurement of the positive probes. They must be 128, 32, 8, 2, 0.5, and 0.125. 
+3. SampleID: An unique ID given to each patient in each study 
+4. Count: The actual measurements 
+5. UID: An unique ID given to each **combination** of patient and study
+
+## Data Curation
+The data curation involves two steps: creating indices that are consecutive and performing linear regression to get empirical estimates of intercepts, slopes, and residuals. 
+```{r curation}
+ds = curate_data(dataset=ds)
+# Or
+# df = curate_data(dataset='PATH/TO/YOUR/FILE.csv')
+head(ds, n=12)
+```
+The *curate_data* function first checks if the columns name as well as the *RNA* column conforms to our requirement. The argument `dataset` can be a dataframe or the path to the .csv file. Then, it creates consecutive IDs and transforms RNA and Count. 
+
+We then perform linear regression for each patient in each study and record the regression coefficients and residuals. 
+```{r regression}
+results = find_regression_coefs(df=ds)
+head(results$df)
+head(results$coeffs2)
+```
+Compared with the previous output, we can see that a *residual* column has been added. Also, we have created a new dataframe containing all the regression coefficients. 
+
+That's all the preparation you need!
+
+## Meta Analysis 
+The fun part starts from here where we finally have everything we need to execute our wonderful Gibbs sampler. And all you need is just one line of code. This might take a while....
+```{r meta, eval=FALSE}
+Draws = meta_analysis(ds=results$df,
+                      coeffs2=results$coeffs2,
+                      M=12000,
+                      n_keep=5000)
+
+```
+To run several MCMC chains, you just simply repeat the previous piece code several times. 
+```{r mcmcs, eval=FALSE}
+draws1 = meta_analysis(ds=results$df,
+                      coeffs2=results$coeffs2,
+                      M=12000,
+                      n_keep=5000)
+draws2 = meta_analysis(ds=results$df,
+                      coeffs2=results$coeffs2,
+                      M=12000,
+                      n_keep=5000)
+# ... and repeat
+```
+### NOTE
+Currently, due to the way some Gibbs sampling functions are implemented, running the *meta_analysis* function will yield lots of intermediate variables in the Global environment. This will be fixed in the future. One direction would be incorporating SQLite to store intermediate variables. 
+
+For the purpose of demonstration, we also included the four MCMC chains in parallel of 12,000 samples. Here we show the posterior draws of one of the parameters. 
+```{r draws, fig.align='center', out.width="70%"}
+data("meta_mcmc_draws1")
+data("meta_mcmc_draws2")
+data("meta_mcmc_draws3")
+data("meta_mcmc_draws4")
+plot(draw1$mu_alpha, type="l", main="MCMC Draws",
+     ylab = "mu_alpha", xlab=NA)
+lines(draw2$mu_alpha, col=2)
+lines(draw3$mu_alpha, col=3)
+lines(draw4$mu_alpha, col=4)
+```
+
+# Normalization 
+Now we move on to the MetaNorm algorithm. Likewise, we have provided along with our package a curated dataset that can be directly loaded and used as input to the MetaNorm function. 
+```{r input, eval=FALSE}
+data("normalization_data")
+```
+To run the MetaNorm algorithm, simply run the following: 
+```{r norm, eval=FALSE}
+draws = MetaNorm(dat=input,
+                 M=5000,
+                 all_draws=TRUE)
+```
+The `all_draws=TRUE` tells the algorithm to keep all the MCMC draws for all parameters (which is A LOT). 
+
+For the purpose of demonstration, we also included one MCMC chain on one of the parameters
+
+```{r draw, fig.align='center', out.width="70%"}
+data("norm_mcmc_draws_kappa_hk")
+plot(kappa_hk[,1,1], type="l", main="MCMC Draws",
+     ylab = "kappa_hk", xlab=NA)
+```
+For most users, the only parameters of interest are the posterior means for `kappa_hk` and `kappa_reg`. Of course, you are welcome to compute the posterior summary statistics by yourself based on the MCMC draws. However, as the data structure is rather convoluted, we provide along with the `MetaNorm` function additional parameters to only return the parameters of interest. To enable this mode of inference, simply set `all_draws=FALSE` and provide some basic information on how many sample are for burn in and how to thin the MCMC draws.  
+```{r norm_only_stat, eval=FALSE}
+output = MetaNorm(dat=input,
+                  M=5000,
+                  all_draws=FALSE,
+                  burn_in=1000,
+                  thin=2)
+```
+By setting `burn_in=1000`, we are telling the algorithm to discard the first 1000 samples when computing the summary statistics. `thin=2` tells the algorithm to only collect every other sample to reduce auto-correlation. 
+
+Currently, due to the design of the algorithm, even if we are only returning the posterior means, we still store all the MCMC sample draws internally. This would consume lots of memory space which would be a serious issue if we are working with a large dataset. To alleviate the issue, we provide a function: `MetaNorm_LowMemory` that will only keep the most recent MCMC draws for all parameters except for global parameters. Along with the posterior samples for global parameters, we will also compute the summary statistics for `kappa_hk` and `kappa_reg`. To use this function, run the following code 
+```{r norm_low_memory, eval=FALSE}
+output = MetaNorm_LowMemory(dat=dat, 
+                            M=5000,
+                            burn_in = 1000,
+                            thin=2)
+```
+The output is a list containing two items: “GlobalParameters_Draws” (all draws for mu_a, mu_b, sig2_a, sig2_b) and “Posterior_estimates” (list of kappa_hk, kappa_reg posterior estimates).
+
+
+
+
+
