@@ -16,10 +16,16 @@ Besides the R helper as well as the vignette we provide along with the package, 
 - R>=4.0.2
 
 ## Installation
+For the stable version: 
 ```shell
 library(devtools)
+install_github("jbarth216/MetaNorm",subdir="MetaNorm", ref="main")
+```
+or if you want to try out the development version: 
+```shell 
 install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="main")
 ```
+
 Other than making sure your R version is correct, there is no need for 
 you to manually install other packages as they will be automatically 
 installed when installing our package.  
@@ -129,15 +135,17 @@ Random seed, for reproducibility. If running multiple chains to check convergenc
 
 For more details, please refer to our [online documentation](https://metanorm.readthedocs.io/en/latest/)
 
-## Citation
+## Citation :book:
 The artical associated with this project is currently under review at Bioinformatics.
 
-## Contact 
-Jackson Barth, PhD (jackson_barth@baylor.edu)
+## Contact :mailbox: 
+If you have any questions or suggestions, feel free to contact us :smiley:
+- [Dr. Jackson Barth faculty page](https://statistics.artsandsciences.baylor.edu/person/dr-jackson-barth) 
+- [Yuqiu Yang](https://github.com/Yuqiu-Yang)
+- [Dr. Guanghua (Andy) Xiao lab](https://qbrc.swmed.edu/labs/xiaolab/)
+- [Dr. Xinlei (Sherry) Wang faculty page](https://www.uta.edu/academics/faculty/profile?username=wangx9)
 
-Assistant Professor
+## Acknowledgement  :bow:
+- [SMU M3 high-performance computing (HPC) cluster](https://www.smu.edu/oit/services/m3)
 
-Department of Statistical Science
-
-Baylor University 
 
