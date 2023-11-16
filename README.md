@@ -93,14 +93,14 @@ Proceed with caution. If you are working with a large dataset, please proceed di
 
 Once you have prepared your dataset, to perform `MetaNorm` simply run:
 ```shell
-draw = MetaNorm(dat=normalization_data, M=5000, all_draws=TRUE)
+draw = MetaNorm(dat=dat, M=5000, all_draws=TRUE)
 ```
 As with the `meta_analysis` function, `M` is the number of draws for each parameter, inclduing burn-in. The default of 15,000 is conservative, as MetaNorm can produce stable estimates often with
 only 2-3k draws total. `all_draws=TRUE` tells the algorithm to keep all the MCMC draws for all parameters (which is A LOT). 
 
 For most users, the only parameters of interest are the posterior means for `kappa_hk` and `kappa_reg`. Of course, you are welcome to compute the posterior summary statistics by yourself based on the MCMC draws. However, as the data structure is rather convoluted, we provide along with the `MetaNorm` function additional parameters to only return the parameters of interest. To enable this mode of inference, simply set `all_draws=FALSE` and provide some basic information on how many sample are for burn in and how to thin the MCMC draws.  
 ```shell 
-output = MetaNorm(dat=input, M=5000, all_draws=FALSE, burn_in=1000, thin=2)
+output = MetaNorm(dat=dat, M=5000, all_draws=FALSE, burn_in=1000, thin=2)
 ```
 By setting `burn_in=1000`, we are telling the algorithm to discard the first 1000 samples when computing the summary statistics. `thin=2` tells the algorithm to only collect every other sample to reduce auto-correlation. 
 

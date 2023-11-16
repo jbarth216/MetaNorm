@@ -18,7 +18,7 @@ To load the data and carry out `MetaNorm`, simply run the following:
 .. code:: bash 
     
     data("normalization_data")
-    draw = MetaNorm(dat=normalization_data, M=5000, all_draws=TRUE)
+    draw = MetaNorm(dat=dat, M=5000, all_draws=TRUE)
 
 As with the `meta_analysis` function, `M` is the number of draws for each parameter, inclduing burn-in. The default of 15,000 is conservative, as MetaNorm can produce stable estimates often with
 only 2-3k draws total. `all_draws=TRUE` tells the algorithm to keep all the MCMC draws for all parameters (which is A LOT). 
@@ -51,7 +51,7 @@ and provide some basic information on how many sample are for burn in and how to
 
 .. code:: bash 
 
-    output = MetaNorm(dat=input, M=5000, all_draws=FALSE, burn_in=1000, thin=2)
+    output = MetaNorm(dat=dat, M=5000, all_draws=FALSE, burn_in=1000, thin=2)
 
 By setting `burn_in=1000`, we are telling the algorithm to discard the first 1000 samples when computing the summary statistics. `thin=2` 
 tells the algorithm to only collect every other sample to reduce auto-correlation. 
