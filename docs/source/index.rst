@@ -53,11 +53,18 @@ Here we list the dependencies of the package.
 
 Installation
 ------------------
+For the stable version: 
 
 .. code:: bash 
 
-   library(devtools)
-   install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="main")
+  library(devtools)
+  install_github("jbarth216/MetaNorm",subdir="MetaNorm", ref="main")
+
+or if you want to try out the development version: 
+
+.. code:: bash 
+
+  install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="main")
 
 User Guide / Tutorial
 ==========================
@@ -98,7 +105,7 @@ For our paper, read our preprint `here <https://www.google.com>`_.
 For more resources, please visit the following:
 
    * `Dr. Jackson Barth faculty page <https://statistics.artsandsciences.baylor.edu/person/dr-jackson-barth>`_
-   * `Yuqiu Yang <https://github.com/Yuqiu-Yang>_`
+   * `Yuqiu Yang <https://github.com/Yuqiu-Yang>`_
    * `Dr. Guanghua (Andy) Xiao <https://qbrc.swmed.edu/labs/xiaolab/>`_
    * `Dr. Xinlei (Sherry) Wang <https://www.uta.edu/academics/faculty/profile?username=wangx9>`_
    * `SMU M3 high-performance computing (HPC) cluster <https://www.smu.edu/oit/services/m3>`_
