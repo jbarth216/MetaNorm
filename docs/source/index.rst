@@ -90,10 +90,10 @@ They are described in detail below.
 
   references
   Our Paper <https://www.google.com>
+  Dr. Xinlei (Sherry) Wang <https://www.uta.edu/academics/faculty/profile?username=wangx9>
   Dr. Jackson Barth <https://statistics.artsandsciences.baylor.edu/person/dr-jackson-barth>
   Yuqiu Yang <https://github.com/Yuqiu-Yang>
   Dr. Guanghua (Andy) Xiao <https://qbrc.swmed.edu/labs/xiaolab/>
-  Dr. Xinlei (Sherry) Wang <https://www.uta.edu/academics/faculty/profile?username=wangx9>
   GitHub <https://github.com/jbarth216/MetaNorm>
   SMU M3 high-performance computing (HPC) cluster <https://www.smu.edu/oit/services/m3>
 
@@ -103,11 +103,11 @@ Resources
 For our paper, read our preprint `here <https://www.google.com>`_.
 
 For more resources, please visit the following:
-
+   
+   * `Dr. Xinlei (Sherry) Wang <https://www.uta.edu/academics/faculty/profile?username=wangx9>`_
    * `Dr. Jackson Barth faculty page <https://statistics.artsandsciences.baylor.edu/person/dr-jackson-barth>`_
    * `Yuqiu Yang <https://github.com/Yuqiu-Yang>`_
    * `Dr. Guanghua (Andy) Xiao <https://qbrc.swmed.edu/labs/xiaolab/>`_
-   * `Dr. Xinlei (Sherry) Wang <https://www.uta.edu/academics/faculty/profile?username=wangx9>`_
    * `SMU M3 high-performance computing (HPC) cluster <https://www.smu.edu/oit/services/m3>`_
 
 For project development and newest updates, consider visiting the following:

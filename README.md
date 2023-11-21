@@ -140,10 +140,10 @@ The artical associated with this project is currently under review at Bioinforma
 
 ## Contact :mailbox: 
 If you have any questions or suggestions, feel free to contact us :smiley:
+- [Dr. Xinlei (Sherry) Wang faculty page](https://www.uta.edu/academics/faculty/profile?username=wangx9)
 - [Dr. Jackson Barth faculty page](https://statistics.artsandsciences.baylor.edu/person/dr-jackson-barth) 
 - [Yuqiu Yang](https://github.com/Yuqiu-Yang)
 - [Dr. Guanghua (Andy) Xiao lab](https://qbrc.swmed.edu/labs/xiaolab/)
-- [Dr. Xinlei (Sherry) Wang faculty page](https://www.uta.edu/academics/faculty/profile?username=wangx9)
 
 ## Acknowledgement  :bow:
 - [SMU M3 high-performance computing (HPC) cluster](https://www.smu.edu/oit/services/m3)
