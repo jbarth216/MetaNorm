@@ -1,18 +1,24 @@
 References
 ===================
 
-For a complete list of references, you can read `our paper <https://www.google.com>`_.
+For a complete list of references, you can read `our paper <https://doi.org/10.1101/2023.11.17.567577>`_.
 
 Our Paper 
 -------------------------
 
 .. code-block:: text
 
-    @article {BarthMetaNorm,
-        author = {Barth, Jackson and Yang, Yuqiu and Xiao, Guanghua and Wang, Xinlei},
+    @article {Barth2023.11.17.567577,
+        author = {Jackson P Barth and Yuqiu Yang and Guanghua Xiao and Xinlei Wang},
         title = {MetaNorm: Incorporating Meta-analytic Priors into Normalization of NanoString nCounter Data},
-        year = {2023+},
-        journal = {Revision Invited at Bioinformatics}
+        elocation-id = {2023.11.17.567577},
+        year = {2023},
+        doi = {10.1101/2023.11.17.567577},
+        publisher = {Cold Spring Harbor Laboratory},
+        abstract = {Non-informative or diffuse prior distributions are widely employed in Bayesian data analysis to maintain objectivity. However, when meaningful prior information exists and can be identified, using an informative prior distribution to accurately reflect current knowledge may lead to superior outcomes and great efficiency. We propose MetaNorm, a Bayesian algorithm for normalizing NanoString nCounter gene expression data. MetaNorm is based on RCRnorm, a powerful method designed under an integrated series of hierarchical models that allow various sources of error to be explained by different types of probes in the nCounter system. However, a lack of accurate prior information, weak computational efficiency, and instability of estimates that sometimes occur weakens the approach despite its impressive performance. MetaNorm employs priors carefully constructed from a rigorous meta-analysis to leverage information from large public data. Combined with additional algorithmic enhancements, MetaNorm improves RCRnorm by yielding more stable estimation of normalized values, better convergence diagnostics and superior computational efficiency. R Code for replicating the meta-analysis and the normalization function can be found at github.com/jbarth216/MetaNorm.Competing Interest StatementThe authors have declared no competing interest.},
+        URL = {https://www.biorxiv.org/content/early/2023/11/21/2023.11.17.567577},
+        eprint = {https://www.biorxiv.org/content/early/2023/11/21/2023.11.17.567577.full.pdf},
+        journal = {bioRxiv}
     }
 
 

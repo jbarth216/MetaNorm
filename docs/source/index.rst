@@ -17,7 +17,7 @@ Here is a quick overview of the structure of the model:
    :width: 600
    :align: center
 
-For a more detailed exploration of our model, please refer to `our paper <https://www.google.com>`_:
+For a more detailed exploration of our model, please refer to `our paper <https://doi.org/10.1101/2023.11.17.567577>`_:
 
 Dependencies 
 ---------------------
@@ -89,7 +89,7 @@ They are described in detail below.
   :hidden: 
 
   references
-  Our Paper <https://www.google.com>
+  Our Paper <https://doi.org/10.1101/2023.11.17.567577>
   Dr. Xinlei (Sherry) Wang <https://www.uta.edu/academics/faculty/profile?username=wangx9>
   Dr. Jackson Barth <https://statistics.artsandsciences.baylor.edu/person/dr-jackson-barth>
   Yuqiu Yang <https://github.com/Yuqiu-Yang>
@@ -100,7 +100,7 @@ They are described in detail below.
 Resources
 ===============
 
-For our paper, read our preprint `here <https://www.google.com>`_.
+For our paper, read our preprint `here <https://doi.org/10.1101/2023.11.17.567577>`_.
 
 For more resources, please visit the following:
    
