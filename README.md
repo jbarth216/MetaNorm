@@ -136,19 +136,23 @@ Random seed, for reproducibility. If running multiple chains to check convergenc
 For more details, please refer to our [online documentation](https://metanorm.readthedocs.io/en/latest/)
 
 ## Citation :book:
-We have uploaded our article to bioRxiv. To cite, \
-@article {\
-    &emsp; Barth2023.11.17.567577,\
-	&emsp; author = {Jackson P Barth and Yuqiu Yang and Guanghua Xiao and Xinlei Wang},\
-	&emsp; title = {MetaNorm: Incorporating Meta-analytic Priors into Normalization of NanoString nCounter Data},\
-	&emsp; elocation-id = {2023.11.17.567577},\
-	&emsp; year = {2023},\
-	&emsp; doi = {10.1101/2023.11.17.567577},\
-	&emsp; publisher = {Cold Spring Harbor Laboratory},\
-	&emsp; URL = {https://www.biorxiv.org/content/early/2023/11/21/2023.11.17.567577},\
-	&emsp; eprint = {https://www.biorxiv.org/content/early/2023/11/21/2023.11.17.567577.full.pdf},\
-	&emsp; journal = {bioRxiv}\
+We have uploaded our article to bioRxiv. To cite
+
+```
+@article {
+    Barth2023.11.17.567577,
+	author = {Jackson P Barth and Yuqiu Yang and Guanghua Xiao and Xinlei Wang},
+	title = {MetaNorm: Incorporating Meta-analytic Priors into Normalization of NanoString nCounter Data},
+	elocation-id = {2023.11.17.567577},
+	year = {2023},
+	doi = {10.1101/2023.11.17.567577},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2023/11/21/2023.11.17.567577},
+	eprint = {https://www.biorxiv.org/content/early/2023/11/21/2023.11.17.567577.full.pdf},
+	journal = {bioRxiv}
 }
+```
+
 
 The artical is currently under review at Bioinformatics.
 
