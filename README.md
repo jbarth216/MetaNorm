@@ -4,7 +4,7 @@
 
 MetaNorm is a normalization procedure for Nanostring nCounter datasets. 
 
-Please refer to our paper for more details: [MetaNorm link here](https://doi.org/10.1101/2023.11.17.567577)
+Please refer to [our paper](https://doi.org/10.1101/2023.11.17.567577) for more details.
 
 Besides the R helper as well as the vignette we provide along with the package, we have also built a detailed [online documentation](https://metanorm.readthedocs.io/en/latest/) where we guide you step-by-step on how to conduct meta analysis as well as normalizing a NanoString nCounter dataset.
 
