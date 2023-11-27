@@ -4,7 +4,7 @@
 
 MetaNorm is a normalization procedure for Nanostring nCounter datasets. 
 
-Please refer to our paper for more details: [MetaNorm link here](www.google.com)
+Please refer to [our paper](https://doi.org/10.1101/2023.11.17.567577) for more details.
 
 Besides the R helper as well as the vignette we provide along with the package, we have also built a detailed [online documentation](https://metanorm.readthedocs.io/en/latest/) where we guide you step-by-step on how to conduct meta analysis as well as normalizing a NanoString nCounter dataset.
 
@@ -16,10 +16,16 @@ Besides the R helper as well as the vignette we provide along with the package, 
 - R>=4.0.2
 
 ## Installation
+For the stable version: 
 ```shell
 library(devtools)
+install_github("jbarth216/MetaNorm",subdir="MetaNorm", ref="main")
+```
+or if you want to try out the development version: 
+```shell 
 install_github("Yuqiu-Yang/MetaNorm", subdir="MetaNorm", ref="main")
 ```
+
 Other than making sure your R version is correct, there is no need for 
 you to manually install other packages as they will be automatically 
 installed when installing our package.  
@@ -87,14 +93,14 @@ Proceed with caution. If you are working with a large dataset, please proceed di
 
 Once you have prepared your dataset, to perform `MetaNorm` simply run:
 ```shell
-draw = MetaNorm(dat=normalization_data, M=5000, all_draws=TRUE)
+draw = MetaNorm(dat=dat, M=5000, all_draws=TRUE)
 ```
 As with the `meta_analysis` function, `M` is the number of draws for each parameter, inclduing burn-in. The default of 15,000 is conservative, as MetaNorm can produce stable estimates often with
 only 2-3k draws total. `all_draws=TRUE` tells the algorithm to keep all the MCMC draws for all parameters (which is A LOT). 
 
 For most users, the only parameters of interest are the posterior means for `kappa_hk` and `kappa_reg`. Of course, you are welcome to compute the posterior summary statistics by yourself based on the MCMC draws. However, as the data structure is rather convoluted, we provide along with the `MetaNorm` function additional parameters to only return the parameters of interest. To enable this mode of inference, simply set `all_draws=FALSE` and provide some basic information on how many sample are for burn in and how to thin the MCMC draws.  
 ```shell 
-output = MetaNorm(dat=input, M=5000, all_draws=FALSE, burn_in=1000, thin=2)
+output = MetaNorm(dat=dat, M=5000, all_draws=FALSE, burn_in=1000, thin=2)
 ```
 By setting `burn_in=1000`, we are telling the algorithm to discard the first 1000 samples when computing the summary statistics. `thin=2` tells the algorithm to only collect every other sample to reduce auto-correlation. 
 
@@ -129,15 +135,35 @@ Random seed, for reproducibility. If running multiple chains to check convergenc
 
 For more details, please refer to our [online documentation](https://metanorm.readthedocs.io/en/latest/)
 
-## Citation
-The artical associated with this project is currently under review at Bioinformatics.
+## Citation :book:
+We have uploaded our article to bioRxiv. To cite
 
-## Contact 
-Jackson Barth, PhD (jackson_barth@baylor.edu)
+```
+@article {
+    Barth2023.11.17.567577,
+	author = {Jackson P Barth and Yuqiu Yang and Guanghua Xiao and Xinlei Wang},
+	title = {MetaNorm: Incorporating Meta-analytic Priors into Normalization of NanoString nCounter Data},
+	elocation-id = {2023.11.17.567577},
+	year = {2023},
+	doi = {10.1101/2023.11.17.567577},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2023/11/21/2023.11.17.567577},
+	eprint = {https://www.biorxiv.org/content/early/2023/11/21/2023.11.17.567577.full.pdf},
+	journal = {bioRxiv}
+}
+```
 
-Assistant Professor
 
-Department of Statistical Science
+The artical is currently under review at Bioinformatics.
 
-Baylor University 
+## Contact :mailbox: 
+If you have any questions or suggestions, feel free to contact us :smiley:
+- [Dr. Xinlei (Sherry) Wang faculty page](https://www.uta.edu/academics/faculty/profile?username=wangx9)
+- [Dr. Jackson Barth faculty page](https://statistics.artsandsciences.baylor.edu/person/dr-jackson-barth) 
+- [Yuqiu Yang](https://github.com/Yuqiu-Yang)
+- [Dr. Guanghua (Andy) Xiao lab](https://qbrc.swmed.edu/labs/xiaolab/)
+
+## Acknowledgement  :bow:
+- [SMU M3 high-performance computing (HPC) cluster](https://www.smu.edu/oit/services/m3)
+
 
